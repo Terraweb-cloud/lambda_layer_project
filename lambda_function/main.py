@@ -1,3 +1,8 @@
+###############################################################################################
+#         AWS LAMBDA FUNCTION TO DISPLAY LIST OF ALL AWS S3 BUCKETS IN TABULAR OUTPUT         #
+###############################################################################################
+
+# We imported a library called tublate to help us beutify the output into a tabular format
 import boto3
 from tabulate import tabulate
 
