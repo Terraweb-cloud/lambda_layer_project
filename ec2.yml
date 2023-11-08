@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation Sample Template: EC2 instance with public IP and network interface.'
+
+Resources:
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      KeyName: YourKeyPair
+      ImageId: ami-0abcdef1234567890  # Replace with a valid AMI ID for your region
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          AssociatePublicIpAddress: 'true'  # This will assign a public IP address in a public subnet
+          DeleteOnTermination: 'true'
+          SubnetId: YourSubnetId
+          GroupSet:
+            - YourSecurityGroupID
+
+Outputs:
+  InstanceId:
+    Description: The Instance ID
+    Value: !Ref MyEC2Instance
+  InstancePublicIp:
+    Description: The Public IP address of the instance
+    Value: !GetAtt MyEC2Instance.PublicIp
